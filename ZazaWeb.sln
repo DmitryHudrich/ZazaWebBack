@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZazaWeb", "ZazaWeb\ZazaWeb.csproj", "{015CED83-6870-4B43-88BD-865C2C3965D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZazaNotes", "ZazaNotes\ZazaNotes.csproj", "{C656D40F-81E2-45E0-91E2-E9FC1D58F0E4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{015CED83-6870-4B43-88BD-865C2C3965D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{015CED83-6870-4B43-88BD-865C2C3965D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{015CED83-6870-4B43-88BD-865C2C3965D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{015CED83-6870-4B43-88BD-865C2C3965D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C656D40F-81E2-45E0-91E2-E9FC1D58F0E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C656D40F-81E2-45E0-91E2-E9FC1D58F0E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C656D40F-81E2-45E0-91E2-E9FC1D58F0E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C656D40F-81E2-45E0-91E2-E9FC1D58F0E4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9F15AA58-FEAB-41FB-9C4F-AD3A4B9D8FE5}
+	EndGlobalSection
+EndGlobal
