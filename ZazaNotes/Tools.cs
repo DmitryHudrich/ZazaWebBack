@@ -1,9 +1,9 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 
-namespace ZazaNotes;
+namespace Zaza.Notes;
 
-internal static class Tools {
+public static class Tools {
     public static void ChangeById<T>(this List<T> list, Guid guid, IIdentifiable? newElement = null)
         where T : IIdentifiable {
         for (int i = 0; i < list.Count; i++) {
