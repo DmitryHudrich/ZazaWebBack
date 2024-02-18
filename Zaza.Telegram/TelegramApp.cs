@@ -11,7 +11,7 @@ namespace Zaza.Telegram;
 
 public class TelegramApp(ILogger<TelegramApp> logger, IConfiguration configuration) {
     public async Task Run() {
-        var token = configuration.GetSection("TelegramToken").Value ?? 
+        var token = System.IO.File.ReadAllText("Token.txt") ?? 
             throw new ArgumentNullException("TelegramToken");
         var botClient = new TelegramBotClient(token);
 
