@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zaza.Notes", "ZazaNotes\Zaz
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zaza.Db", "Zaza.Db\Zaza.Db.csproj", "{DB9E03E4-6CC7-46AD-BF49-ADB68AA80D7D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zaza.Telegram", "Zaza.Telegram\Zaza.Telegram.csproj", "{2E79CB45-C996-4D6E-8860-3D8E2205FAE8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{DB9E03E4-6CC7-46AD-BF49-ADB68AA80D7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DB9E03E4-6CC7-46AD-BF49-ADB68AA80D7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DB9E03E4-6CC7-46AD-BF49-ADB68AA80D7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E79CB45-C996-4D6E-8860-3D8E2205FAE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E79CB45-C996-4D6E-8860-3D8E2205FAE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E79CB45-C996-4D6E-8860-3D8E2205FAE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E79CB45-C996-4D6E-8860-3D8E2205FAE8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

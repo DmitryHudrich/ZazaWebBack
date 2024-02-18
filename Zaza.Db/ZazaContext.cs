@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
@@ -13,9 +14,11 @@ public class ZazaContext {
 
     public IMongoCollection<User> Users => _usersCollection;
 
-    public ZazaContext() {
-        string connectionString = Environment.GetEnvironmentVariable("MONGODB_URL")!;
-        string databaseName = Environment.GetEnvironmentVariable("MONGODB_NAME")!;
+    public ZazaContext(IConfiguration configuration) {
+        string connectionString = configuration.GetConnectionString("MongoString") ??
+            throw new ArgumentNullException(nameof(connectionString));
+        string databaseName = configuration.GetSection("MongoName").Value ??
+            throw new ArgumentNullException(nameof(databaseName));
         var client = new MongoClient(connectionString);
         _database = client.GetDatabase(databaseName);
         _usersCollection = _database.GetCollection<User>("users");

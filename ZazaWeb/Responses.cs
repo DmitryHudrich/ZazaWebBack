@@ -1,6 +1,4 @@
 ﻿using Zaza.Db.Repository;
-using Zaza.Notes;
-using Zaza.Notes.Controllers;
 using Zaza.Notes.Entities;
 
 namespace Zaza.Web;

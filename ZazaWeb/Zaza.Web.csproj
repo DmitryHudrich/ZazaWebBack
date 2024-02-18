@@ -17,6 +17,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Zaza.Db\Zaza.Db.csproj" />
+		<ProjectReference Include="..\Zaza.Telegram\Zaza.Telegram.csproj" />
 		<ProjectReference Include="..\ZazaNotes\Zaza.Notes.csproj" />
 	</ItemGroup>
 

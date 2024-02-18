@@ -1,21 +1,22 @@
 using Zaza.Db;
 using Zaza.Db.Repository;
-using Zaza.Notes.Controllers;
 using Zaza.Notes.Entities;
+using Zaza.Telegram;
 using Zaza.Web;
-
-const string DB_STRING = "mongodb://localhost:27017";
-const string DB_NAME = "NotesData";
-Environment.SetEnvironmentVariable("MONGODB_NAME", DB_NAME);
-Environment.SetEnvironmentVariable("MONGODB_URL", DB_STRING);
 
 var builder = WebApplication.CreateBuilder();
 
 builder.Services.AddCors();
 builder.Services.AddSingleton<ZazaContext>();
 builder.Services.AddSingleton<UserRepository>();
+builder.Services.AddSingleton<TelegramApp>();
 
 var app = builder.Build();
+
+string mongoLink = app.Configuration.GetConnectionString("MongoString") ??
+    throw new ArgumentNullException(nameof(mongoLink));
+string mongoName = app.Configuration.GetValue<string>("MongoName") ??
+    throw new ArgumentNullException(nameof(mongoName));
 
 var serviceScope = app.Services.CreateScope();
 var services = serviceScope.ServiceProvider;
@@ -29,7 +30,9 @@ app.UseCors(builder => {
     builder.AllowAnyMethod();
 });
 app.UseStaticFiles();
+var tgTask = app.Services.GetRequiredService<TelegramApp>().Run();
 app.Run();
+await tgTask;
 
 internal record UserInfo {
     public required string Name { get; set; }
