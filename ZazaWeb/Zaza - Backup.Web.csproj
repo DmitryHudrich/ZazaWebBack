@@ -15,7 +15,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ZazaNotes\ZazaNotes.csproj" />
+  <!--Не забыть убрать заза дб-->
+    <ProjectReference Include="..\Zaza.Db\Zaza.Db.csproj" />
+    <ProjectReference Include="..\Zaza.Notes.Controllers\Zaza.Notes.Controllers.csproj" />
+    <ProjectReference Include="..\ZazaNotes\Zaza.Notes.oControllers.csproj" />
   </ItemGroup>
 
 </Project>
