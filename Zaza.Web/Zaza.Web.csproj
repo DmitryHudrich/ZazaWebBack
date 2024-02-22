@@ -21,4 +21,10 @@
 		<ProjectReference Include="..\ZazaNotes\Zaza.Notes.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <None Update="Token.txt">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
+
 </Project>

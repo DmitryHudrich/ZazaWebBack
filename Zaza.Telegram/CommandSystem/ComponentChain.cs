@@ -1,4 +1,6 @@
-﻿namespace Zaza.Telegram.Components;
+﻿using Zaza.Telegram.CommandSystem;
+
+namespace Zaza.Telegram.Components;
 
 internal class ComponentChain
 {

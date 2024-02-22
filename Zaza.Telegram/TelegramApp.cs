@@ -1,17 +1,16 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using Telegram.Bot;
 using Telegram.Bot.Exceptions;
 using Telegram.Bot.Polling;
 using Telegram.Bot.Types;
-using Telegram.Bot.Types.ReplyMarkups;
+using Zaza.Telegram.CommandSystem;
 using Zaza.Telegram.Components;
 
 namespace Zaza.Telegram;
 
-public class TelegramApp(ILogger<TelegramApp> logger, IConfiguration configuration) {
+public class TelegramApp(ILogger<TelegramApp> logger, ComponentProvider componentProvider) {
     public async Task Run() {
-        var token = System.IO.File.ReadAllText("Token.txt") ?? 
+        var token = await System.IO.File.ReadAllTextAsync("Token.txt") ??
             throw new ArgumentNullException("TelegramToken");
         var botClient = new TelegramBotClient(token);
 
@@ -30,58 +29,17 @@ public class TelegramApp(ILogger<TelegramApp> logger, IConfiguration configurati
         );
 
         var me = await botClient.GetMeAsync();
-
-        ComponentManager
-            .Begin(async (Update update) => {
-                await botClient.SendTextMessageAsync(
-                    chatId: update.Message!.Chat.Id,
-                    text: "кто",
-                    cancellationToken: cts.Token);
-            }, "стив хуйс")
-            .Then(async (Update update) => {
-                await botClient.SendTextMessageAsync(
-                    chatId: update.Message!.Chat.Id,
-                    text: "кто кто",
-                    cancellationToken: cts.Token);
-            }, "я")
-            .Then(async (Update update) => {
-                await botClient.SendTextMessageAsync(
-                    chatId: update.Message!.Chat.Id,
-                    text: "а понял ебать",
-                    cancellationToken: cts.Token);
-            }, "я")
-            .End();
-
-        ComponentManager
-            .Begin(async (Update update) => {
-                await botClient.SendTextMessageAsync(
-                    chatId: update.Message.Chat.Id,
-                    text: "сам саси",
-                    cancellationToken: cts.Token);
-            }, "саси")
-            .Then(async (Update update) => {
-                var replyKeyboardMarkup =
-                await botClient.SendTextMessageAsync(
-                    chatId: update.Message.Chat.Id,
-                    text: "вот сука",
-                    replyMarkup: new ReplyKeyboardMarkup([
-                        ["сосать", "не сосать"],
-                        ["сам соси", "я вообще кнопка ебать"],
-                        ["мала ляма наминала"],
-                    ]),
-                    cancellationToken: cts.Token);
-            }, "нет ты саси")
-            .End();
-
+        componentProvider.Setup(botClient, cts);
 
         logger.LogInformation($"Start listening for @{me.Username}");
-        
+
         Console.ReadLine();
 
         // Send cancellation request to stop bot
         cts.Cancel();
 
     }
+
     private Task HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken) {
         // Only process Message updates: https://core.telegram.org/bots/api#message
         if (update.Message is not { } message)

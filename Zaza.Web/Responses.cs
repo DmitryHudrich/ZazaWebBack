@@ -13,6 +13,5 @@ public class Responses(UserRepository repos) {
         app.MapPut("api/users/id={id:guid}", async (UserInfo user, Guid id) => await repos.ChangeUserAsync(id,
             new User(id, user.Name, user.Login, new Password(user.Password))));
         app.MapDelete("api/users/id={id:guid}", async (Guid id) => await repos.DeleteUserAsync(id));
-
     }
 }

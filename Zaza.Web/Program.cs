@@ -2,6 +2,7 @@ using Zaza.Db;
 using Zaza.Db.Repository;
 using Zaza.Notes.Entities;
 using Zaza.Telegram;
+using Zaza.Telegram.CommandSystem;
 using Zaza.Web;
 
 var builder = WebApplication.CreateBuilder();
@@ -9,6 +10,7 @@ var builder = WebApplication.CreateBuilder();
 builder.Services.AddCors();
 builder.Services.AddSingleton<ZazaContext>();
 builder.Services.AddSingleton<UserRepository>();
+builder.Services.AddSingleton<ComponentProvider>();
 builder.Services.AddSingleton<TelegramApp>();
 
 var app = builder.Build();
@@ -30,6 +32,7 @@ app.UseCors(builder => {
     builder.AllowAnyMethod();
 });
 app.UseStaticFiles();
+
 var tgTask = app.Services.GetRequiredService<TelegramApp>().Run();
 app.Run();
 await tgTask;

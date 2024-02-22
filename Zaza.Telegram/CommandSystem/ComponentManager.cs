@@ -1,4 +1,5 @@
 using Telegram.Bot.Types;
+using Zaza.Telegram.CommandSystem;
 
 namespace Zaza.Telegram.Components;
 
@@ -10,18 +11,23 @@ internal static class ComponentManager
     private static readonly List<Component> components = [];
     public static IReadOnlyList<Component> Components => components;
 
-    public static ComponentChain Begin(ComponentHandler action, string command)
+    public static ComponentChain Begin(string command, ComponentHandler action)
     {
-        var comp = new Component(command, action);
+        var comp = new Component(action, command);
         var res = new ComponentChain();
         res.Components.Add(comp);
         return res;
     }
 
-    public static ComponentChain Then(this ComponentChain chain, ComponentHandler action, string command)
+    public static ComponentChain Then(this ComponentChain chain, string command, ComponentHandler action)
     {
-        chain.Components.Add(new Component(command, action));
+        chain.Components.Add(new Component(action, command));
         return chain;
+    }
+
+    public static ComponentChain Then(this ComponentChain chain, ComponentHandler action) {
+        chain.Components.Add(new Component(action));
+        return chain;   
     }
 
     public static Component End(this ComponentChain componentChain)
